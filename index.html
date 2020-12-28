@@ -14,51 +14,54 @@
 <body>
     <div id="ttt-screen">
         <div id="choose-opponent-btn">Choose Opponent</div>
-    <div id="main-header">
-        <header>Tic Tac Toe</header>
-    </div>
-    <div id="main-section">
-        <div id="player-panel">
-            <div class="panel-content"><span id="player-name">Player1</span><i class="fas fa-edit"></i></div>
-            <div class="panel-content">Wins: <span id="player-score">0</span></div>
-            <div class="panel-content"><span id="player-turn">Your turn</span></div>
-            <div id="select-turn-container" class="panel-content">
-                <p>Choose your turn:</p>
-                <div id="select-turn">
-                    <button id="o" class="select-move">o</button>
-                    <button id="x" class="select-move">x</button>
+        <div id="main-header">
+            <header>Tic Tac Toe</header>
+        </div>
+        <div id="main-section">
+            <div id="player-panel">
+                <div class="panel-content"><span id="player-name">Player1</span></div>
+                <div class="panel-content"><span id="player-turn">Your turn </span> <i class="fas fa-arrow-left"></i></div>
+                <div id="select-turn-container" class="panel-content">
+                    <p>Choose your turn:</p>
+                    <div id="select-turn">
+                        <button id="o" class="select-move">o</button>
+                        <button id="x" class="select-move">x</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="game-board-container">
-            <div id="game-board">
-                <div id="rowA" class="ttt-rows">
-                    <div id="a1" class="tiles"></div>
-                    <div id="a2" class="tiles"></div>
-                    <div id="a3" class="tiles"></div>
-                </div>
-                <div id="rowB" class="ttt-rows">
-                    <div id="b1" class="tiles"></div>
-                    <div id="b2" class="tiles"></div>
-                    <div id="b3" class="tiles"></div>
-                </div>
-                <div id="rowC" class="ttt-rows">
-                    <div id="c1" class="tiles"></div>
-                    <div id="c2" class="tiles"></div>
-                    <div id="c3" class="tiles"></div>
+            <div id="game-board-container">
+                <div id="game-board">
+                    <div id="rowA" class="ttt-rows">
+                        <div id="a1" class="tiles"></div>
+                        <div id="a2" class="tiles"></div>
+                        <div id="a3" class="tiles"></div>
+                    </div>
+                    <div id="rowB" class="ttt-rows">
+                        <div id="b1" class="tiles"></div>
+                        <div id="b2" class="tiles"></div>
+                        <div id="b3" class="tiles"></div>
+                    </div>
+                    <div id="rowC" class="ttt-rows">
+                        <div id="c1" class="tiles"></div>
+                        <div id="c2" class="tiles"></div>
+                        <div id="c3" class="tiles"></div>
+                    </div>
                 </div>
             </div>
+            <div id="com-panel">
+                <div class="panel-content"><span id="op-name">Player A.I</span></div>
+                <div class="panel-content"><i class="fas fa-arrow-right"></i><span id="op-turn"> Next turn</span></div>
+            </div>
         </div>
-        <div id="com-panel">
-            <div class="panel-content"><span id="op-name">Player A.I</span></div>
-            <div class="panel-content"><span id="op-score">0</span> :Wins</div>
-            <div class="panel-content"><span id="op-turn">Next turn</span></div>
-        </div>
+        <footer>Maintaned by <a href="https://github.com/law911012eqw"><icon class="fa fa-github"></icon> law911012eqw</a></footer>
     </div>
+    <div id="display-result">
+        <div id="text-result">asdsadsa</div>
+        <button>Play again</button>
     </div>
     <div id="choose-opponent-container">
         <p>Choose your opponent:</p>
-        <div id ="choose-opponent">
+        <div id="choose-opponent">
             <div id="playerOpp" class="selectOpp">
                 <div id=iconPlayer><i class="far fa-user fa-3x"></i></div>
                 <caption>Player</caption>
