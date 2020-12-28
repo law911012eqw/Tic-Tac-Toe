@@ -18,6 +18,14 @@ body{
     -ms-user-select: none;
         user-select: none;
 }
+a {
+    text-decoration: none;
+    color: rgb(53, 23, 5);
+}
+i{
+    opacity: 0.8;
+}
+a:hover{text-decoration: underline;}
 header{
     display: inline-block;
     text-align: center;
@@ -56,10 +64,12 @@ header > span{
 }
 #player-panel > div{
     padding: 45px 0 45px 45px;
+    border-bottom: 1px solid rgba(138, 56, 9, 0.26);
 }
 #com-panel > div{
     padding: 45px 45px 45px 0;
     text-align: end;
+    border-bottom: 1px solid rgba(138, 56, 9, 0.26);
 }
 #game-board-container{
     height: 400px;
@@ -91,9 +101,6 @@ header > span{
     font-size: 5.6em; 
     padding: 35px;
 }
-i{
-    opacity: 0.4;
-}
 #select-turn{
     display: flex;
     flex-direction: row;
@@ -114,6 +121,23 @@ i{
 }
 #select-turn > button:hover{
     background:rgba(138, 56, 9,0.4);
+}
+#display-result{
+    background-color:var(--panel-bg);
+    display: none;
+    font-size: 2em;
+    position: absolute;
+    top: 35%;
+    left: 44%;
+    box-shadow: 0 0 4px rgb(138, 56, 9);
+    padding: 45px;
+    color: var(--main-fcolor);
+}
+#display-result > button{
+    box-shadow: 0 0 1px rgb(224, 121, 61);
+    background-color: rgb(224, 121, 61);
+    color: rgb(82, 40, 2);
+    border: none;
 }
 #choose-opponent-container{
     display: flex;
@@ -169,7 +193,19 @@ i{
     color: var(--main-fcolor);
     pointer-events: none;
 }
-
+.fa-arrow-left{
+    animation: shifting-left-arrow 2s linear infinite
+}
+ .fa-arrow-right{
+    animation: shifting-right-arrow 2s linear infinite;
+}
+.fa-arrow-right {visibility: hidden;}
+footer{
+    position: fixed;
+    text-align: center;
+    bottom: 2%;
+    width: 100%;
+}
 /* animations */
 @-webkit-keyframes glow {
     from {
@@ -185,5 +221,29 @@ i{
     }
     to {
       text-shadow: 0 0 20px #fff, 0 0 30px #e9924b, 0 0 40px #e9924b, 0 0 50px #e9924b, 0 0 60px #e9924b, 0 0 70px #e9924b, 0 0 80px #e9924b;
+    }
+}
+@keyframes shifting-left-arrow{
+    0%{
+        transform: translateX(-5px) translateY(8px) rotateX(360deg);
+    }
+    50%{
+        transform: translateX(8px) translateY(8px) rotateX(0deg);
+        opacity: 0.5;
+    }
+    100%{
+        transform: translateX(-5px) translateY(8px) rotateX(360deg);
+    }
+}
+@keyframes shifting-right-arrow{
+    0%{
+        transform: translateX(-15px) translateY(8px) rotateX(360deg) scale(0.8);
+    }
+    50%{
+        transform: translateX(0px) translateY(8px) rotateX(0deg) scale(0.8);
+        opacity: 0.5;
+    }
+    100%{
+        transform: translateX(-15px) translateY(8px) rotateX(360deg) scale(0.8);
     }
 }
