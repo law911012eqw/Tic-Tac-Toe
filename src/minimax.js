@@ -1,59 +1,72 @@
-function findBestMove() {
-  let bestScore = -Infinity;
-  let move;
-  let board = gameBoard.getBoardArr();
-  let ai = AI.getTTT();
+const possibilities = { x: 10, o: -10, t: 0};
 
-  for (let i = 0; i < 9; i++) {
-    if (board[i] == '') {
-      gameBoard.setTile(ai, i);
-      let score = minimax(board, 0, -Infinity, Infinity, false);
-      gameBoard.setTile('', i);
-
-      if (score > bestScore) {
-        bestScore = score;
-        move = i;
-      }
-      console.log(ai);
-      console.log(gameBoard.getBoardArr())
-      console.log(board[i]);
-      console.log(move);
-    }
+function _minimax(board, depth, a, b, isMax) {
+  let result = gameBoard.minimaxResult();
+  if (result !== null) {
+    return possibilities[result];
   }
-  return move;
-}
-
-function minimax(board, depth, a, b, isMaximizing) {
-  if (depth == 0){
-    
+  //if AI is first move it'll immediately choose the best move
+  //which is the first tile
+  if (gameBoard.isBoardEmpty()) {
+    depth += 1;
+    return Infinity;
   }
-  if (isMaximizing) {
+
+  if (isMax) {
     let bestScore = -Infinity;
+    //iterate througout the entire gameboard tiles
     for (let i = 0; i < 9; i++) {
-      if (board[i] == '') {
-        gameBoard.setTile(AI.getTTT(), i);
-        bestScore = Math.max(bestScore, minimax(board, depth+1, a, b, false));
-        gameBoard.setTile('', i);
-        b = Math.max(b, bestScore);
-        if (a > b){
-            break;
-        }
-      }
-    }
-    return bestScore;
-  } else {
-    let bestScore = Infinity;
-    for (let i = 0; i < 9; i++) {
-      if (board[i] == '') {
-        gameBoard.setTile(Player.getTTT(), i);
-        bestScore = Math.min(bestScore, minimax(board, depth+1, a, b, true));
-        gameBoard.setTile('', i);
-        a = Math.min(a, bestScore);
-        if (b > a){
+      //checks for available spots  
+      if (gameBoard.getBoard(i) == '') {
+        board[i] = AI.getTTT();
+        bestScore = Math.max(bestScore, _minimax(board, depth + 1, a, b, false));
+        board[i] = '';
+        a = Math.max(a, bestScore);
+        if (a > b) {
           break;
         }
       }
     }
     return bestScore;
   }
+  else {
+    let bestScore = Infinity;
+
+    for (let i = 0; i < 9; i++) {
+      if (gameBoard.getBoard(i) == '') {
+        board[i] = Player.getTTT();
+        bestScore = Math.min(bestScore, _minimax(board, depth + 1, a, b, true));
+        board[i] = '';
+        b = Math.min(b, bestScore);
+        if (b < a) {
+          break;
+        }
+      }
+    }
+    return bestScore;
+  }
+}
+
+function findBestMove() {
+  let bestScore = -Infinity;
+  let moveIndex;
+  let board = gameBoard.getBoardArr();
+  let score;
+  for (let i = 0; i < 9; i++) {
+    if (gameBoard.getBoard(i) == '') {
+      board[i] = AI.getTTT();
+      if (Player.getTTT() == 'o'){
+        score = _minimax(board, 0, -Infinity, Infinity, false);
+      }
+      else if (Player.getTTT() == 'x'){
+        score = _minimax(board, 0, -Infinity, Infinity, true);
+      }
+      board[i] = '';
+      if (score > bestScore) {
+        bestScore = score;
+        moveIndex = i;
+      }
+    }
+  }
+  return moveIndex;
 }
