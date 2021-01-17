@@ -271,7 +271,7 @@ const AI = player();
             }
             else if (e.target.textContent === "" && Player.getOpponent() === 'AI') {
                 e.target.textContent = Player.getTTT();
-                displayController.displayPlayer2Turn();
+                if(Player.getTTT() === 'x') { displayController.displayPlayer2Turn(); }
                 gameBoard.setTile(Player.getTTT(), i);
                 gameBoard.setPreviousMove(Player.getTTT());
                 /*prevents the hindrance of displaying the result
